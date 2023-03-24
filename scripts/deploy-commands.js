@@ -24,8 +24,10 @@ for (const folder of commandFolders) {
     for (const file of commandFiles){
         const filePath = path.join(commandsPath, folder, file);
 	    const command = require(filePath);
+		console.log('data' in command && 'execute' in command)
 	    // Set a new item in the Collection with the key as the command name and the value as the exported module
 	    if ('data' in command && 'execute' in command) {
+			console.log('command set')
 	    	commands.push(command.data.toJSON());
 	    } else {
 	    	console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
